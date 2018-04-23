@@ -1,0 +1,69 @@
+<script type="text/javascript">
+    function OnAdd(s, e) {
+        var count = parseInt(ASPxClientUtils.GetCookie("panelsCount"));
+
+        if (isNaN(count))
+            count = 0;
+
+        $.ajax({
+            url: '@Url.Action("DockPanelPartial", "Home")',
+            type: "POST",
+            data: { index: count },
+            success: function (response) {
+                //Use this line until we fix the B254332 issue
+                //if (DockManager.layoutStateLoaded) DockManager.layoutStateLoaded = false;
+
+                $(response).appendTo('#ajaxDiv');
+                ASPxClientUtils.SetCookie("panelsCount", count + 1);
+            }
+        });
+    }
+
+    function OnClear(s, e) {
+        var count = parseInt(ASPxClientUtils.GetCookie("panelsCount"));
+
+        if (isNaN(count))
+            count = 0;
+
+        ASPxClientUtils.DeleteCookie("panelsCount");
+        ASPxClientUtils.DeleteCookie("panelsState");
+
+        window.location = "";
+    }
+</script>
+
+@Html.DevExpress().Button(settings => {
+    settings.Name = "btnAdd";
+    settings.Text = "Add";
+    settings.ClientSideEvents.Click = "OnAdd";
+}).GetHtml()
+
+@Html.DevExpress().Button(settings => {
+    settings.Name = "btnClear";
+    settings.Text = "Clear";
+    settings.ClientSideEvents.Click = "OnClear";
+}).GetHtml()
+
+@Html.DevExpress().DockZone(settings => {
+    settings.Name = "DockZone";
+    settings.ZoneUID = "Zone";
+    settings.ControlStyle.BackColor = System.Drawing.Color.LightBlue;
+}).GetHtml()
+
+<div id="ajaxDiv">
+    @* Restore old panels: *@
+    @if (Request.Cookies["panelsCount"] != null) {
+        int panelsCount = Convert.ToInt32(Request.Cookies["panelsCount"].Value);
+
+        for (int i = 0; i < panelsCount; i++) {
+            Html.RenderAction("DockPanelPartial", "Home", new { index = i });
+        }
+    }
+</div>
+
+@* DockManager should be rendered after all dock panels/zones to ensure correct layout management: *@
+@Html.DevExpress().DockManager(settings => {
+    settings.Name = "DockManager";
+    settings.SaveStateToCookies = true;
+    settings.SaveStateToCookiesID = "panelsState";
+}).GetHtml()
