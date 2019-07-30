@@ -7,7 +7,7 @@
 <!-- default file list end -->
 # DockPanel - How to create DockPanels dynamically and persist their state to cookies
 <!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/e5133)**
+**[[Run Online]](https://codecentral.devexpress.com/e5133/)**
 <!-- run online end -->
 
 
