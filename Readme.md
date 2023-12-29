@@ -1,8 +1,3 @@
-<!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/128552432/14.1.3%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E5133)
-[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
-<!-- default badges end -->
 <!-- default file list -->
 *Files to look at*:
 
@@ -11,9 +6,6 @@
 * [Index.cshtml](./CS/Views/Home/Index.cshtml)
 <!-- default file list end -->
 # DockPanel - How to create DockPanels dynamically and persist their state to cookies
-<!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/e5133/)**
-<!-- run online end -->
 
 
 <p>This example illustrates how to add <a href="http://documentation.devexpress.com/#AspNet/CustomDocument11439"><u>DockPanel</u></a> to the view dynamically and restore their layout from cookies when view page is reloaded. We are using the approach from the <a href="https://www.devexpress.com/Support/Center/p/E4063">How to use the jQuery.ajax function with DevExpress MVC Extensions</a> code example to generate a new DockPanel on the server side and add its resulting HTML to the view page:</p>
